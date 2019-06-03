@@ -38,6 +38,5 @@
 	<modules>
 		<module>springboot-springex</module>
 		<module>springboot-mysite</module>
-		<module>springboot-mysite2</module>
 	</modules>
 </project>
