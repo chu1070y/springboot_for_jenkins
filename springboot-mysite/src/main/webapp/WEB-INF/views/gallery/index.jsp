@@ -15,6 +15,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+
 $(function(){
 	// 업로드 다이알로그
 	var dialogUpload = $( "#dialog-upload-form" ).dialog({
@@ -40,25 +41,99 @@ $(function(){
 		event.preventDefault();
 		dialogUpload.dialog( "open" );
 	});
+	
+	
 });	
 </script>
+
+<style>
+.image {
+	display: block;
+	height: 100%;
+	width: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;	
+	z-index: 9;
+}
+
+#gallery ul li {
+	height: 100px;
+	width: 100px;
+	float: left;
+	margin: 10px;
+	position: relative;
+
+}
+
+.del-button {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 10;
+}
+
+li:hover .image {
+	border: 2px solid #f00;
+}
+
+#gallery li:hover .del-button{
+	display: block;
+	height: 20px;
+	width: 20px;
+	background: url('${pageContext.request.contextPath }/assets/images/delete-imge.png');
+	z-index: 10;
+	font-size: 0;
+	background-size: 20px;
+}
+
+#gallery div{
+	height: 50px;
+}
+
+#gallery div h1 {
+	display: block;
+	width: auto;
+	float: left;
+	background: url('${pageContext.request.contextPath }/assets/images/gallery.png') no-repeat;
+	background-size: 1.4em;
+	padding-left: 1.5em;
+}
+
+#upload-image {
+	float: right;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+</style>
 </head>
 <body>
 	<div id="container">
-		<c:import url="/WEB-INF/views/include/header.jsp" />
+		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="gallery">
 				<div>
 					<h1>갤러리</h1>
-					<a href="" id="upload-image">이미지 올리기</a>
+					<a href="" class="btn" id="upload-image">이미지 올리기</a>
 				</div>
 				<ul>
 						<li>
 							<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im1.jpg"
 								data-lightbox="gallery"
 								class="image"
-								style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im1.jpg')">&nbsp;</a>
-								
+								style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im1.jpg');">&nbsp;</a>
+								 
 							<a	href="${pageContext.request.contextPath }/gallery/delete/1"
 								class="del-button"
 								title="삭제">삭제</a>
@@ -235,10 +310,10 @@ $(function(){
   				</form>
 			</div>
 		</div>
-		<c:import url="/WEB-INF/views/include/navigation.jsp">
+		<c:import url="/WEB-INF/views/includes/navigation.jsp">
 			<c:param name="menu" value="gallery"/>
 		</c:import>
-		<c:import url="/WEB-INF/views/include/footer.jsp" />
+		<c:import url="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>
 </html>
